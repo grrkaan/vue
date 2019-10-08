@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body class="p-5">
+<div id="app">
+    <input type="text" v-model="name" class="form-control">
+    <input type="text" v-model="surname" class="form-control">
+    <span>{{ nameSurname}}</span>
+    <hr>
+    <input type="text" v-model.number="price" class="form-control">
+    <span>{{ tax_price() }}( Tax Inc. )</span>
+    <hr>
+    <ul>
+        <li v-for="user in first_k_users">
+            {{ user }}
+        </li>
+    </ul>
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script>
+    const app = new Vue({
+            el: '#app',
+            name: 'Vue Js',
+            data: {
+                name: 'Kaan',
+                surname: 'Görür',
+                price: 0,
+                kdv: 0,
+                users: ['kaan','sercan','görür','kerim','soren']
+            },
+            methods: {
+                tax_price() {
+                    this.kdv = this.price * 18 / 100 ;
+                    return this.kdv + this.price;
+                }
+            },
+            computed: {
+                nameSurname() {
+                    return this.name + ' ' + this.surname;
+                },
+                first_k_users() {
+                    return this.users.filter(k => k.startsWith('k'));
+                }
+            }
+        })
+</script>
+</body>
+</html>

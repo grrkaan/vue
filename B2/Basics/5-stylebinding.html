@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js Course</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body>
+
+<div id="app">
+    <select name="" v-model="selectedStyle" id="" class="form-control">
+        <option >alert alert-success</option>
+        <option >alert alert-danger</option>
+        <option >alert alert-info</option>
+        <option >alert alert-warning</option>
+    </select>
+    <div :class="selectedStyle">Hello Vue.Js !</div>
+    <hr>
+    <div :class="[bgSuccess, txtWhite, 'jumbotron']">Hello Vue.Js !</div>
+    <hr>
+    <div class="form-group row">
+        <label for="" class="col-sm-2">Name</label>
+        <div class="co-sm-10">
+            <input type="text" id="name" v-model="user.name" :class="{'form-control is-valid' : user.name, 'form-control is-invalid ': !user.name }" >
+
+            <span>{{ user.name.length}} char.</span>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group row">
+        <label for="role" class="col-sm-2">Role</label>
+        <div class="co-sm-10">
+            <span :class="{'badge badge-success' : user.role == 'Admin', 'badge badge-warning': user.role != 'Admin' }" >
+            {{ user.role}}</span>
+        </div>
+    </div>
+    <hr>
+    <div :style="styleEx">Vue JS</div>
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script>
+  const app =  new Vue({
+        el:'#app',
+        name:'Vue Js',
+        data:{
+            selectedStyle:'alert alert-success',
+            bgSuccess:'bg-success',
+            txtWhite:'text-white',
+            user:{
+                id:1,
+                name:'Kaan',
+                role:'Admin'
+            },
+            styleEx:{
+                color:'Blue',
+                fontSize:'18px'
+            }
+        }
+    })
+</script>
+</body>
+</html>

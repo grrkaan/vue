@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body>
+
+<div id="app">
+<div class="alert alert-success">
+    {{ message }}
+</div>
+    <div>
+        <button class="btn btn-sm btn-info" v-on:click="welcome">Welcome</button>
+        <button class="btn btn-sm btn-danger" @click="bye">Bye Bye</button>
+    </div>
+    <hr>
+    <form @submit.prevent="true">
+    <div class="form-group row">
+        <label for="email" class="col-md-3 col-form-label">Email</label>
+        <div class="col-sm-5"><input type="email" class="form-control" id="email" v-model="email" @keypress.enter="saveEmail">/div>
+
+    </div>
+    </form>
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        name: 'Vue Js',
+        data: {
+            message: 'Vue Js First Message',
+            email:''
+        },
+        methods:{
+            welcome() {
+                this.message = "Welcome Vue !";
+            },
+            bye() {
+                this.message = "Bye Bye !";
+            },
+            saveEmail() {
+                if(this.email != null)
+                this.message = "Email Saved !";
+            }
+        }
+    })
+</script>
+</body>
+</html>

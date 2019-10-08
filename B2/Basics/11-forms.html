@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body class="p-5">
+<div id="app">
+    <form action="">
+        <label for="Name">Name</label>
+        <input type="text" v-model="user.name" class="form-control col-6">
+
+        <label for="Address">Address</label>
+        <textarea v-model="user.address" name="" id="" class="form-control" cols="30" rows="10"></textarea>
+
+        <hr>
+        <label for="">
+            <input type="checkbox" v-model="user.isActive"> Is Active ?
+        </label>
+        <!--        <pre class="form-text text-muted"> {{ user.isActive }}</pre>-->
+        <hr>
+        <label for="">
+            <input type="checkbox" v-model="user.roles" value="Admin"> Admin
+        </label>
+        <label for="">
+            <input type="checkbox" v-model="user.roles" value="Customer"> Customer
+        </label>
+        <label for="">
+            <input type="checkbox" v-model="user.roles" value="Guest"> Guest
+        </label>
+        <pre class="form-text text-muted"> {{ user.roles}}</pre>
+
+        <select v-model="user.roles" class="form-control col-6" multiple>
+            <option>Admin</option>
+            <option>Customer</option>
+            <option>Guest</option>
+        </select>
+        <hr>
+        <label for="">
+            <input type="radio" v-model="user.gender" value="M"> Male
+        </label>
+        <label for="">
+            <input type="radio" v-model="user.gender" value="F"> Female
+        </label>
+        <pre class="form-text text-muted"> {{ user.gender}}</pre>
+        <hr>
+
+        <label for="">City</label>
+        <select v-model="user.city" class="form-control">
+            <option value="">Choose</option>
+            <option v-for="city in cities" :value="city.value">{{ city.text }}</option>
+        </select>
+        <pre class="form-text text-muted"> {{ user.city}}</pre>
+    </form>
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        name: 'Vue Js',
+        data: {
+            user: {
+                name: 'Kaan',
+                address: 'Adana',
+                isActive: true,
+                roles: [],
+                gender: 'M',
+                city: 31
+            },
+            cities:[
+                {text: 'Hatay', value: 31},
+                {text: 'Adana', value: 1},
+                {text: 'İstanbul', value: 34},
+                {text: 'Mersin', value: 33}
+            ]
+
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+    <link rel="stylesheet" href="../../assets/css/toastr.min.css">
+</head>
+<body class="p-5">
+<div id="app">
+    <form action="" method="post" @submit="save">
+        <h2 class="form-text">User Register Form</h2>
+        <hr>
+        <div v-if="errors.length > 0" class="alert alert-danger">
+            <p>Please Check Form Values:</p>
+            <ul>
+                <li v-for="error in errors">{{ error }}</li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" v-model="name" class="form-control col-md-6">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" v-model="email" class="form-control col-md-6">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" v-model="password" class="form-control col-md-6">
+        </div>
+        <div class="form-group">
+            <label for="password2">Password Check</label>
+            <input type="password" id="password2" v-model="password2" class="form-control col-md-6">
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" v-model="hobbies" value="1"> Tech.
+            </label>
+            <label>
+                <input type="checkbox" v-model="hobbies" value="2"> Movies
+            </label>
+            <label>
+                <input type="checkbox" v-model="hobbies" value="3"> Sport
+            </label>
+        </div>
+
+        <button type="submit" value="save" class="btn btn-primary">Submit</button>
+
+    </form>
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script src="../../assets/js/jquery-2.2.4.min.js"></script>
+<script src="../../assets/js/toastr.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        name: 'Vue Js',
+        data: {
+            name: "",
+            email: "",
+            password: "",
+            password2: "",
+            hobbies: [],
+            errors: []
+        },
+        methods: {
+            save(e) {
+                e.preventDefault();
+
+                this.errors = [];
+                if (!this.name)
+                    this.errors.push('Name Required !');
+                if (!this.email)
+                    this.errors.push('Email Required !');
+                if (!this.validEmail(this.email))
+                    this.errors.push('Email Incorrect Form !');
+                if (!this.password && !this.password2)
+                    this.errors.push('Passwords Required !');
+                if (this.password !== this.password2)
+                    this.errors.push('Passwords Must Be Same!');
+                if (this.errors.length === 0){
+                    toastr.success('Form Saved :)');
+                }else{
+                    let msg = '';
+                    this.errors.forEach(value => {
+                        msg += value + "<br>";
+                    });
+                    toastr.error(msg);
+                }
+            },
+            validEmail: function (email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

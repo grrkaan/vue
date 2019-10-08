@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body>
+
+<div id="app" class="p-4">
+    <p v-text="mesaj"></p>
+    <p v-html="mesajHtml"></p>
+    <hr>
+    <div>
+        <label for="">Message</label>
+        <input type="text" v-model="mesaj" class="form-control">
+        <input type="text" v-model.number="fiyat" class="form-control">
+        <span>KDV Tutarı: {{ fiyat * 18 /100}}</span>
+    </div>
+
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script>
+  const app =  new Vue({
+      el: '#app',
+      name: 'Vue Js',
+      data: {
+          mesaj: 'Hello Vue Js !',
+          mesajHtml: 'Hello Vue.<b>Js</b> !',
+          fiyat:31
+      }
+  })
+</script>
+</body>
+</html>

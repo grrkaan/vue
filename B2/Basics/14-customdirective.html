@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body class="p-5">
+<div id="app">
+    <div v-alert="'success'">{{title}}</div>
+    <div v-bg="{ type : 'success' }" class="p-2 mb-4 text-white"> {{title}}</div>
+
+    <input type="text" v-model="dateTime" class="form-control col-md-6">
+    <input type="text" v-model="dateTime" v-datetime:date="dateTime" class="form-control col-md-6">
+    <input type="text" v-model="dateTime" v-datetime:time="dateTime" class="form-control col-md-6">
+
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script>
+    Vue.directive('datetime', function(el, binding){
+        if (binding.arg === 'date')
+            el.value = new Date(binding.value).toLocaleDateString();
+        else
+            el.value = new Date(binding.value).toLocaleTimeString();
+    });
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Vue Js',
+        data: {
+            title: 'Lorem ipsum dolar sit amet',
+            dateTime: '2019-10-28 19:07:00'
+        },
+        directives: {
+            alert: function (el, binding) {
+                el.setAttribute('class', 'alert alert-' + binding.value);
+            },
+            bg: function (el, binding) {
+                el.setAttribute('class', el.getAttribute('class') + ' bg-' + binding.value.type);
+            }
+        }
+    })
+</script>
+</body>
+</html>

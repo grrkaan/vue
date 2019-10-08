@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+        <h1>Users  <span>( {{ users.length }} )</span> </h1>
+        <hr>
+        <table class="table table-bordered table-hover table-responsive-md">
+            <tr class="bg-dark text-white">
+                <th>#</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Role</th>
+            </tr>
+            <tr v-for="(user , index) in users">
+                <td> {{ index }}</td>
+                <td> {{ user.id }}</td>
+                <td> {{ user.name }}</td>
+                <td> {{ user.role }}</td>
+            </tr>
+        </table>
+    </div>
+
+
+<script src="../../assets/js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        name: 'Vue Js',
+        data: {
+            users: [
+                {
+                    id: 1,
+                    name: 'Kaan',
+                    role: 'Admin'
+                },
+                {
+                    id: 2,
+                    name: 'Kaan2',
+                    role: 'Admin2'
+                },
+                {
+                    id: 3,
+                    name: 'Kaan3',
+                    role: 'Admin3'
+                }
+            ]
+        }
+    })
+</script>
+</body>
+</html>

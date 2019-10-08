@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body class="p-5">
+<div id="app">
+    <form action="">
+        Wood:
+        <input type="number" v-model="wood" class="form-control col-2">
+
+        Stone:
+        <input type="number" v-model="stone" class="form-control col-2">
+
+        Total Used Items:
+        <input type="text" v-model="total" class="form-control col-2">
+
+        Total - 2 Used Items : {{ total2 }}
+    </form>
+</div>
+<script src="../../assets/js/vue.js"></script>
+<script>
+  const app =  new Vue({
+        el:'#app',
+        name:'Vue Js',
+        data:{
+            wood:0,
+            stone:0,
+            total:0
+        },
+       watch:{
+            wood(value) {
+                this.total = parseInt(this.wood) + parseInt(this.stone);
+            },
+           stone(value) {
+               this.total = parseInt(this.wood) + parseInt(this.stone);
+           }
+       },
+      computed:{
+            total2() {
+                return parseInt(this.wood)+parseInt(this.stone);
+            }
+      }
+    })
+</script>
+</body>
+</html>
